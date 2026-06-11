@@ -1,0 +1,51 @@
+<%- include('../partials/header') %>
+<main id="main">
+
+  <section class="page-hero">
+    <p class="eyebrow au">Got Questions?</p>
+    <h1 class="au au-d1">Frequently Asked<br>Questions</h1>
+    <p class="page-hero__sub au au-d2">Everything you need to know before your visit. Can't find an answer? <a href="/contact">Contact us</a> — we're happy to help.</p>
+  </section>
+
+  <div class="ibar" role="note">
+    <span class="pulsedot pulsedot--sm" aria-hidden="true"></span>
+    Open every day &mdash; <strong>9:00 AM &ndash; 6:00 PM</strong> &mdash; Last entry 5:00 PM
+  </div>
+
+  <section class="faq-sec" aria-label="Frequently asked questions">
+    <div class="faq-inner">
+
+      <% Object.entries(grouped).forEach(([cat, items]) => { %>
+      <div class="faq-group js-reveal">
+        <h2 class="faq-group__title"><%= cat %></h2>
+        <dl class="faq-list">
+          <% items.forEach(f => { %>
+          <div class="faq-item" id="faq-<%= f.id %>">
+            <dt>
+              <button class="faq-btn"
+                      aria-expanded="false"
+                      aria-controls="faq-ans-<%= f.id %>">
+                <span><%= f.question %></span>
+                <span class="faq-icon" aria-hidden="true">+</span>
+              </button>
+            </dt>
+            <dd class="faq-ans" id="faq-ans-<%= f.id %>" hidden>
+              <p><%= f.answer %></p>
+            </dd>
+          </div>
+          <% }) %>
+        </dl>
+      </div>
+      <% }) %>
+
+      <div class="faq-cta js-reveal">
+        <h3>Still have questions?</h3>
+        <p>Our team is always happy to help. Get in touch and we'll respond within one working day.</p>
+        <a class="btn btn--primary" href="/contact">Get in Touch</a>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+<%- include('../partials/footer') %>

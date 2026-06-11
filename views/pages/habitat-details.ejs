@@ -1,0 +1,76 @@
+<%- include('../partials/header') %>
+  <main id="main">
+
+    <section class="det-hero" style="--ac:<%= habitat.color %>">
+      <div class="det-hero__img">
+        <img src="<%= habitat.image_url %>" alt="<%= habitat.name %>" loading="eager">
+        <div class="det-hero__ov" aria-hidden="true"></div>
+      </div>
+      <div class="det-hero__body">
+        <a class="back-link" href="/habitats">&larr; All Habitats</a>
+        <span class="det-hero__icon au" aria-hidden="true">
+          <%= habitat.icon %>
+        </span>
+        <h1 class="au au-d1">
+          <%= habitat.name %>
+        </h1>
+        <p class="det-hero__tag au au-d2">
+          <%= habitat.tagline %>
+        </p>
+      </div>
+    </section>
+
+    <div class="ibar" role="note">
+      <span class="pulsedot pulsedot--sm" aria-hidden="true"></span>
+      Open every day &mdash; <strong>9:00 AM &ndash; 6:00 PM</strong>
+    </div>
+
+    <section class="hab-about js-reveal">
+      <div class="hab-about__inner">
+        <p class="eyebrow">About this Habitat</p>
+        <p class="hab-about__text">
+          <%= habitat.long_desc %>
+        </p>
+      </div>
+    </section>
+
+    <section class="sec-exp js-reveal" aria-labelledby="h2-exp">
+      <div class="sec-head">
+        <p class="eyebrow">What's Inside</p>
+        <h2 id="h2-exp">Experiences &amp; Exhibits</h2>
+      </div>
+      <div class="egrid">
+        <% experiences.forEach((e,i)=> { %>
+          <article class="ecard js-stagger" style="animation-delay:<%= i*0.07 %>s" aria-labelledby="ec-<%= e.id %>">
+            <div class="ecard__img">
+              <img src="<%= e.image_url %>" alt="<%= e.name %>" loading="lazy">
+              <span class="etype etype--<%= e.type.toLowerCase().replace(/\s+/g,'-') %>">
+                <%= e.type %>
+              </span>
+            </div>
+            <div class="ecard__body">
+              <h3 id="ec-<%= e.id %>">
+                <%= e.name %>
+              </h3>
+              <p>
+                <%= e.description %>
+              </p>
+              <div class="ecard__meta">
+                <span class="mpill">&#9200; <%= e.duration %></span>
+                <span class="mpill diff--<%= e.difficulty.toLowerCase() %>">
+                  <%= e.difficulty %>
+                </span>
+              </div>
+              <a class="btn btn--sm btn--primary" href="/activity/<%= e.id %>">Learn More</a>
+            </div>
+          </article>
+          <% }) %>
+      </div>
+    </section>
+
+    <div class="sec-cta js-reveal">
+      <a class="btn btn--outline" href="/habitats">&larr; All Habitats</a>
+    </div>
+
+  </main>
+  <%- include('../partials/footer') %>

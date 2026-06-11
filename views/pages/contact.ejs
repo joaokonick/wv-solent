@@ -1,0 +1,129 @@
+<%- include('../partials/header') %>
+<main id="main">
+
+  <section class="page-hero">
+    <p class="eyebrow au">Get In Touch</p>
+    <h1 class="au au-d1">Contact Us</h1>
+    <p class="page-hero__sub au au-d2">We'd love to hear from you. Send us a message and our team will respond within one working day.</p>
+  </section>
+
+  <div class="ibar" role="note">
+    <span class="pulsedot pulsedot--sm" aria-hidden="true"></span>
+    Open every day &mdash; <strong>9:00 AM &ndash; 6:00 PM</strong>
+  </div>
+
+  <section class="contact-sec js-reveal">
+    <div class="contact-inner">
+
+      <!-- Info panel -->
+      <div class="cinfo">
+        <h2>Visit Us</h2>
+
+        <div class="cinfo__row">
+          <span class="cinfo__icon" aria-hidden="true">&#128205;</span>
+          <div>
+            <strong>Address</strong>
+            <p>WildVista Eco-Adventure Park<br>Greenfield Road<br>Bristol, BS1 4NW</p>
+          </div>
+        </div>
+
+        <div class="cinfo__row">
+          <span class="cinfo__icon" aria-hidden="true">&#128336;</span>
+          <div>
+            <strong>Opening Hours</strong>
+            <p class="cinfo__hours">Every day: <span>9:00 AM &ndash; 6:00 PM</span></p>
+            <p class="cinfo__note">Last entry 5:00 PM &bull; Open 365 days a year</p>
+          </div>
+        </div>
+
+        <div class="cinfo__row">
+          <span class="cinfo__icon" aria-hidden="true">&#128222;</span>
+          <div>
+            <strong>Phone</strong>
+            <p>+44 (0)117 456 7890</p>
+          </div>
+        </div>
+
+        <div class="cinfo__row">
+          <span class="cinfo__icon" aria-hidden="true">&#9993;</span>
+          <div>
+            <strong>Email</strong>
+            <p>hello@wildvista.co.uk</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form panel -->
+      <div class="cform-wrap">
+
+        <% if (success) { %>
+        <div class="form-ok" role="alert">
+          <span class="form-ok__icon" aria-hidden="true">&#10003;</span>
+          <div>
+            <strong>Message sent!</strong>
+            <p><%= success %></p>
+          </div>
+        </div>
+        <% } %>
+
+        <% if (errors && errors.length) { %>
+        <div class="form-errs" role="alert" aria-live="polite">
+          <ul>
+            <% errors.forEach(e => { %><li><%= e %></li><% }) %>
+          </ul>
+        </div>
+        <% } %>
+
+        <% if (!success) { %>
+        <form class="cform" action="/contact" method="POST" novalidate id="cform">
+
+          <div class="cform__row">
+            <div class="fg">
+              <label for="name">Full Name <span class="req" aria-hidden="true">*</span></label>
+              <input type="text" id="name" name="name" placeholder="Jane Smith"
+                     required autocomplete="name" aria-required="true">
+            </div>
+            <div class="fg">
+              <label for="email">Email Address <span class="req" aria-hidden="true">*</span></label>
+              <input type="email" id="email" name="email" placeholder="jane@example.com"
+                     required autocomplete="email" aria-required="true">
+            </div>
+          </div>
+
+          <div class="fg">
+            <label for="subject">Subject <span class="req" aria-hidden="true">*</span></label>
+            <select id="subject" name="subject" required aria-required="true">
+              <option value="" disabled selected>Select a subject&hellip;</option>
+              <option>General Enquiry</option>
+              <option>Accessibility</option>
+              <option>Education &amp; Schools</option>
+              <option>Group Visit</option>
+              <option>Events</option>
+              <option>Press &amp; Media</option>
+              <option>Feedback</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div class="fg">
+            <label for="message">Message <span class="req" aria-hidden="true">*</span></label>
+            <textarea id="message" name="message" rows="6"
+                      placeholder="Tell us how we can help&hellip;"
+                      required aria-required="true"
+                      maxlength="1000"></textarea>
+            <span class="char-count" id="charCount" aria-live="polite">0 / 1000</span>
+          </div>
+
+          <button class="btn btn--primary btn--submit" type="submit">
+            Send Message &rarr;
+          </button>
+
+        </form>
+        <% } %>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+<%- include('../partials/footer') %>

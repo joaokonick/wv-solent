@@ -1,0 +1,56 @@
+<%- include('../partials/header') %>
+<main id="main">
+
+  <section class="det-hero" style="--ac:<%= activity.habitat_color %>">
+    <div class="det-hero__img">
+      <img src="<%= activity.image_url %>" alt="<%= activity.name %>" loading="eager">
+      <div class="det-hero__ov" aria-hidden="true"></div>
+    </div>
+    <div class="det-hero__body">
+      <a class="back-link" href="/habitats/<%= activity.habitat_id %>">&larr; <%= activity.habitat_name %></a>
+      <span class="act-type etype etype--<%= activity.type.toLowerCase().replace(/\s+/g,'-') %> au"><%= activity.type %></span>
+      <h1 class="au au-d1"><%= activity.name %></h1>
+    </div>
+  </section>
+
+  <div class="ibar" role="note">
+    <span class="pulsedot pulsedot--sm" aria-hidden="true"></span>
+    Open every day &mdash; <strong>9:00 AM &ndash; 6:00 PM</strong>
+  </div>
+
+  <section class="act-detail js-reveal">
+    <div class="act-detail__inner">
+      <div class="act-detail__main">
+        <p class="eyebrow">About this Experience</p>
+        <p class="act-detail__desc"><%= activity.long_desc %></p>
+        <div class="act-meta">
+          <div class="act-meta__item">
+            <span class="act-meta__label">Duration</span>
+            <span class="act-meta__val">&#9200; <%= activity.duration %></span>
+          </div>
+          <div class="act-meta__item">
+            <span class="act-meta__label">Difficulty</span>
+            <span class="act-meta__val diff--<%= activity.difficulty.toLowerCase() %>"><%= activity.difficulty %></span>
+          </div>
+          <div class="act-meta__item">
+            <span class="act-meta__label">Habitat</span>
+            <span class="act-meta__val"><a href="/habitats/<%= activity.habitat_id %>"><%= activity.habitat_name %></a></span>
+          </div>
+        </div>
+      </div>
+      <aside class="act-detail__side">
+        <div class="info-box">
+          <h3>Plan Your Visit</h3>
+          <p>Included with park entry and available throughout the day. No advance booking required for most sessions.</p>
+          <p class="info-box__hours">&#128336; Open daily <strong>9:00 AM &ndash; 6:00 PM</strong></p>
+          <a class="btn btn--primary" href="/contact" style="width:100%;text-align:center;display:block;margin-top:1.25rem">Enquire</a>
+        </div>
+      </aside>
+    </div>
+    <div class="sec-cta">
+      <a class="btn btn--outline" href="/habitats/<%= activity.habitat_id %>">&larr; Back to <%= activity.habitat_name %></a>
+    </div>
+  </section>
+
+</main>
+<%- include('../partials/footer') %>

@@ -1,0 +1,167 @@
+<%- include('../partials/header') %>
+  <main id="main">
+
+    <!-- HERO -->
+    <section class="hero" aria-label="Welcome to WildVista">
+      <div class="hero__bg" aria-hidden="true">
+        <div class="hero__orb hero__orb--a"></div>
+        <div class="hero__orb hero__orb--b"></div>
+        <div class="hero__orb hero__orb--c"></div>
+      </div>
+      <div class="hero__body">
+        <p class="eyebrow au">Eco-Adventure Wildlife Park</p>
+        <h1 class="hero__h hero__h--anim" aria-label="Where the Wild Things Come Alive">
+          <span class="ha ha--left">Where the</span>
+          <span class="ha ha--up"><em>Wild Things</em></span>
+          <span class="ha ha--right">Come Alive</span>
+        </h1>
+        <p class="hero__sub au au-d2">Six extraordinary habitats. Hundreds of species.<br>Memories that last a
+          lifetime.
+        </p>
+        <div class="hero__btns au au-d3">
+          <a class="btn btn--primary" href="/habitats">Explore Habitats</a>
+          <a class="btn btn--ghost" href="/events">Upcoming Events</a>
+        </div>
+        <div class="hero__hours au au-d4">
+          <span class="pulsedot" aria-hidden="true"></span>
+          Open every day &nbsp;<strong>9:00 AM &ndash; 6:00 PM</strong>
+        </div>
+      </div>
+      <div class="hero__scroll" aria-hidden="true">
+        <div class="hero__scroll-line"></div>
+        <span>Scroll</span>
+      </div>
+    </section>
+
+    <!-- HOURS BAND -->
+    <section class="hours-band js-reveal" aria-label="Opening hours">
+      <div class="hours-band__inner">
+        <div class="hours-band__icon" aria-hidden="true">
+          <svg width="34" height="34" viewBox="0 0 34 34" fill="none">
+            <circle cx="17" cy="17" r="14" stroke="currentColor" stroke-width="1.5" />
+            <path d="M17 9v8l5.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+          </svg>
+        </div>
+        <div>
+          <h2 class="hours-band__title">Open Every Day of the Year</h2>
+          <p class="hours-band__time">9:00 <span>AM</span> &mdash; 6:00 <span>PM</span></p>
+          <p class="hours-band__note">365 days a year including bank holidays &amp; Christmas &bull; Last entry 5:00 PM
+          </p>
+        </div>
+        <a class="btn btn--outline" href="/contact">Plan Your Visit</a>
+      </div>
+    </section>
+
+    <!-- HABITATS -->
+    <section class="sec-habitats js-reveal" aria-labelledby="h2-habitats">
+      <div class="sec-head">
+        <p class="eyebrow">Six Worlds to Discover</p>
+        <h2 id="h2-habitats">Our Habitats</h2>
+        <p class="sec-sub">Each habitat is a living, breathing world meticulously recreated to give our animals the
+          environment they need to thrive — and you an experience you will never forget.</p>
+      </div>
+      <div class="hgrid">
+        <% habitats.forEach((h,i)=> { %>
+          <a class="hcard js-stagger" href="/habitats/<%= h.id %>"
+            style="--ac:<%= h.color %>;--ab:<%= h.bg_color %>;animation-delay:<%= i*0.07 %>s"
+            aria-label="<%= h.name %> — <%= h.exp_count %> experiences">
+            <div class="hcard__img">
+              <img src="<%= h.image_url %>" alt="<%= h.name %> habitat" loading="<%= i<3?'eager':'lazy' %>">
+            </div>
+            <div class="hcard__body">
+              <span class="hcard__icon" aria-hidden="true">
+                <%= h.icon %>
+              </span>
+              <h3 class="hcard__name">
+                <%= h.name %>
+              </h3>
+              <p class="hcard__tag">
+                <%= h.tagline %>
+              </p>
+              <div class="hcard__foot">
+                <span>
+                  <%= h.exp_count %> experience<%= h.exp_count!==1?'s':'' %>
+                </span>
+                <span class="hcard__arr" aria-hidden="true">&#8594;</span>
+              </div>
+            </div>
+          </a>
+          <% }) %>
+      </div>
+      <div class="sec-cta">
+        <a class="btn btn--primary" href="/habitats">View All Habitats</a>
+      </div>
+    </section>
+
+    <!-- PILLARS -->
+    <section class="sec-pillars js-reveal" aria-labelledby="h2-pillars">
+      <div class="sec-head">
+        <p class="eyebrow">Why WildVista</p>
+        <h2 id="h2-pillars">Conservation at Our Core</h2>
+      </div>
+      <div class="pillars">
+        <% [ {icon:'🌍',title:'Real Conservation',body:'15% of all income directly funds international field
+          conservation projects and European Endangered Species breeding programmes.'}, {icon:'🔬',title:'Science-Led
+          Care', body:'Our 40+ specialist keepers and resident biologists deliver world-class animal welfare guided by
+          the latest research.'}, {icon:'🎓',title:'Education First', body:'From daily ranger talks to accredited school
+          programmes, we inspire the next generation of wildlife champions every day.'}, {icon:'♿',title:'Fully
+          Accessible', body:'All main pathways are paved and wheelchair accessible. Complimentary wheelchair loan
+          available at reception.'} ].forEach((p,i)=> { %>
+          <div class="pillar js-stagger" style="animation-delay:<%= i*0.08 %>s">
+            <div class="pillar__icon" aria-hidden="true">
+              <%= p.icon %>
+            </div>
+            <h3>
+              <%= p.title %>
+            </h3>
+            <p>
+              <%= p.body %>
+            </p>
+          </div>
+          <% }) %>
+      </div>
+    </section>
+
+    <!-- EVENTS TEASER -->
+    <section class="sec-evteaser js-reveal" aria-labelledby="h2-evteaser">
+      <div class="evteaser__inner">
+        <div class="evteaser__copy">
+          <p class="eyebrow">What's On</p>
+          <h2 id="h2-evteaser">Upcoming Events</h2>
+          <p class="sec-sub">From night safaris to photography masterclasses — there is always something extraordinary
+            happening at WildVista.</p>
+          <a class="btn btn--primary" href="/events" style="margin-top:2rem">See All Events</a>
+        </div>
+        <div class="evteaser__cards">
+          <% events.forEach((ev,i)=> {
+            const d = new Date(ev.event_date);
+            const mo = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+            %>
+            <a class="evc js-stagger" href="/events" style="animation-delay:<%= i*0.1 %>s" aria-label="<%= ev.title %>">
+              <div class="evc__date">
+                <span class="evc__day">
+                  <%= d.getUTCDate() %>
+                </span>
+                <span class="evc__mo">
+                  <%= mo[d.getUTCMonth()] %>
+                </span>
+              </div>
+              <div class="evc__body">
+                <span class="evc__badge"
+                  style="background:<%= ev.badge_color %>20;color:<%= ev.badge_color %>;border-color:<%= ev.badge_color %>40">
+                  <%= ev.badge %>
+                </span>
+                <p class="evc__title">
+                  <%= ev.title %>
+                </p>
+                <p class="evc__loc">&#128205; <%= ev.location %>
+                </p>
+              </div>
+            </a>
+            <% }) %>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <%- include('../partials/footer') %>

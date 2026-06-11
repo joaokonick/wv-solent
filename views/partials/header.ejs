@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <meta name="description" content="WildVista Eco-Adventure Park — Six extraordinary wildlife habitats. Open every day 9AM to 6PM.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<header class="hdr" id="hdr">
+  <nav class="nav" aria-label="Main navigation">
+    <a class="nav__logo" href="/" aria-label="WildVista home">
+      <svg class="nav__leaf" width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+        <path d="M13 1S4 7.5 4 15a9 9 0 0018 0C22 7.5 13 1 13 1z" fill="currentColor"/>
+        <path d="M13 7v10M8.5 12l4.5-4.5L17.5 12" stroke="#060e08" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span>WildVista</span>
+    </a>
+
+    <ul class="nav__links" id="navLinks" role="list">
+      <li><a class="nav__a" href="/">Home</a></li>
+      <li><a class="nav__a" href="/habitats">Habitats</a></li>
+      <li><a class="nav__a" href="/events">Events</a></li>
+      <li><a class="nav__a" href="/faq">FAQ</a></li>
+      <li><a class="nav__a nav__a--cta" href="/contact">Contact</a></li>
+    </ul>
+
+    <button class="nav__burger" id="navBurger" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navLinks">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="hdr__strip" aria-label="Opening hours">
+    <span class="hdr__dot" aria-hidden="true"></span>
+    Open every day &mdash; <strong>9:00 AM &ndash; 6:00 PM</strong> &mdash; 365 days a year
+  </div>
+</header>

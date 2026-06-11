@@ -1,0 +1,51 @@
+<%- include('../partials/header') %>
+  <main id="main">
+
+    <section class="page-hero">
+      <p class="eyebrow au">WildVista Eco-Adventure Park</p>
+      <h1 class="au au-d1">Our Habitats</h1>
+      <p class="page-hero__sub au au-d2">Six distinct worlds, each home to extraordinary animals and unforgettable
+        experiences. Every habitat is a journey to a different corner of our planet.</p>
+    </section>
+
+    <div class="ibar" role="note">
+      <span class="pulsedot pulsedot--sm" aria-hidden="true"></span>
+      Open every day &mdash; <strong>9:00 AM &ndash; 6:00 PM</strong> &mdash; Last entry 5:00 PM
+    </div>
+
+    <section class="hrows" aria-label="All habitats">
+      <% habitats.forEach((h,i)=> { %>
+        <article class="hrow js-reveal <%= i%2!==0?'hrow--r':'' %>" style="--ac:<%= h.color %>;--ab:<%= h.bg_color %>"
+          aria-labelledby="hr-<%= h.id %>">
+          <div class="hrow__media">
+            <img src="<%= h.image_url %>" alt="<%= h.name %> at WildVista" loading="lazy">
+            <span class="hrow__num" aria-hidden="true">
+              <%= String(i+1).padStart(2,'0') %>
+            </span>
+          </div>
+          <div class="hrow__body">
+            <span class="hrow__icon" aria-hidden="true">
+              <%= h.icon %>
+            </span>
+            <h2 id="hr-<%= h.id %>">
+              <%= h.name %>
+            </h2>
+            <p class="hrow__tag">
+              <%= h.tagline %>
+            </p>
+            <p class="hrow__desc">
+              <%= h.description %>
+            </p>
+            <div class="hrow__foot">
+              <span class="count-badge">
+                <%= h.exp_count %> experience<%= h.exp_count!==1?'s':'' %>
+              </span>
+              <a class="btn btn--primary" href="/habitats/<%= h.id %>">Explore &rarr;</a>
+            </div>
+          </div>
+        </article>
+        <% }) %>
+    </section>
+
+  </main>
+  <%- include('../partials/footer') %>

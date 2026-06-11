@@ -1,0 +1,47 @@
+<%- include('../partials/header') %>
+<main id="main">
+
+  <section class="page-hero">
+    <p class="eyebrow au">What's On</p>
+    <h1 class="au au-d1">Events</h1>
+    <p class="page-hero__sub au au-d2">From exclusive night safaris to wildlife photography masterclasses — there is always something extraordinary happening at WildVista.</p>
+  </section>
+
+  <div class="ibar" role="note">
+    <span class="pulsedot pulsedot--sm" aria-hidden="true"></span>
+    Open every day &mdash; <strong>9:00 AM &ndash; 6:00 PM</strong>
+  </div>
+
+  <section class="ev-section" aria-label="All events">
+    <div class="ev-list">
+      <% events.forEach((ev,i) => {
+         const d  = new Date(ev.event_date);
+         const ml = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+         const ms = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      %>
+      <article class="evitem js-reveal" style="animation-delay:<%= i*0.08 %>s"
+               aria-label="<%= ev.title %>, <%= d.getUTCDate() %> <%= ml[d.getUTCMonth()] %> <%= d.getUTCFullYear() %>">
+        <div class="evitem__date">
+          <span class="evitem__day"><%= d.getUTCDate() %></span>
+          <span class="evitem__mo"><%= ms[d.getUTCMonth()] %></span>
+          <span class="evitem__yr"><%= d.getUTCFullYear() %></span>
+        </div>
+        <div class="evitem__body">
+          <div class="evitem__top">
+            <span class="ev-badge"
+              style="background:<%= ev.badge_color %>18;color:<%= ev.badge_color %>;border-color:<%= ev.badge_color %>44">
+              <%= ev.badge %>
+            </span>
+            <span class="evitem__loc">&#128205; <%= ev.location %></span>
+          </div>
+          <h2><%= ev.title %></h2>
+          <p class="evitem__desc"><%= ev.description %></p>
+          <p class="evitem__time">&#128336; <%= ev.event_time %></p>
+        </div>
+      </article>
+      <% }) %>
+    </div>
+  </section>
+
+</main>
+<%- include('../partials/footer') %>
