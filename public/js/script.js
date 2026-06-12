@@ -321,7 +321,7 @@ document.addEventListener('DOMContentLoaded', () => {
       { name: 'Manta Ray', img: 'https://images.pexels.com/photos/1001682/pexels-photo-1001682.jpeg?auto=compress&cs=tinysrgb&w=600', habitat: 'Ocean Discovery', fact: 'Manta rays have the largest brain-to-body ratio of any fish.', options: ['Manta Ray', 'Hammerhead Shark', 'Stingray', 'Whale Shark'] },
       { name: 'Komodo Dragon', img: 'https://images.pexels.com/photos/1108701/pexels-photo-1108701.jpeg?auto=compress&cs=tinysrgb&w=600', habitat: 'Reptile World', fact: 'Komodo dragons can run up to 20 km/h over short distances.', options: ['Iguana', 'Monitor Lizard', 'Komodo Dragon', 'Crocodile'] },
       { name: 'African Elephant', img: 'https://images.pexels.com/photos/631317/pexels-photo-631317.jpeg?auto=compress&cs=tinysrgb&w=600', habitat: 'Savannah Plains', fact: 'Elephants are the only animals that cannot jump.', options: ['African Elephant', 'Hippo', 'Rhino', 'Buffalo'] },
-      { name: 'Morpho Butterfly', img: 'https://images.pexels.com/photos/326055/pexels-photo-326055.jpeg?auto=compress&cs=tinysrgb&w=600', habitat: 'Rainforest Canopy', fact: 'The Blue Morpho butterfly uses light refraction to create its colour.', options: ['Monarch Butterfly', 'Morpho Butterfly', 'Painted Lady', 'Swallowtail'] }
+      { name: 'Morpho Butterfly', img: 'https://images.pexels.com/photos/326055/pexels-photo-326055.jpeg?auto=compress&cs=tinysrgb&w=600', habitat: 'Rainforest Canopy', fact: 'The Blue Morpho uses light refraction to create its vivid colour.', options: ['Monarch Butterfly', 'Morpho Butterfly', 'Painted Lady', 'Swallowtail'] }
     ];
 
     let score = 0, animalIndex = 0, tilesRevealed = 0;
@@ -347,11 +347,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const restartBtn = document.getElementById('restartGame');
     const startBtn = document.getElementById('startGame');
 
+    function show(el) { el.style.display = ''; }
+    function hide(el) { el.style.display = 'none'; }
+
     function startGame() {
-      startScreen.hidden = true;
-      scoreBar.hidden = false;
-      hintBar.hidden = false;
-      boardWrap.classList.add('active');
+      hide(startScreen);
+      show(scoreBar);
+      show(hintBar);
+      show(boardWrap);
       loadAnimal(0);
     }
 
@@ -364,8 +367,8 @@ document.addEventListener('DOMContentLoaded', () => {
       animalNum.textContent = (idx + 1) + ' / ' + TOTAL;
       tilesLeft.textContent = '9';
       hintText.textContent = 'Click tiles to reveal the animal. Guess early for more points!';
-      guessDiv.hidden = true;
-      resultDiv.hidden = true;
+      hide(guessDiv);
+      hide(resultDiv);
       board.innerHTML = '';
 
       for (let i = 0; i < 9; i++) {
@@ -384,20 +387,16 @@ document.addEventListener('DOMContentLoaded', () => {
       tilesRevealed++;
       const remaining = 9 - tilesRevealed;
       tilesLeft.textContent = remaining;
-      // progressively unblur as more tiles are revealed
-      const blurAmount = Math.max(0, 14 - (tilesRevealed * 2));
-      const brightness = Math.min(1, 0.3 + (tilesRevealed * 0.08));
-      animalImg.style.filter = 'blur(' + blurAmount + 'px) brightness(' + brightness + ')';
-
-      if (tilesRevealed === 3) {
-        hintText.textContent = 'Habitat hint: ' + animal.habitat + '. Keep going or guess now!';
-      }
+      const blur = Math.max(0, 14 - tilesRevealed * 2);
+      const brightness = Math.min(1, 0.3 + tilesRevealed * 0.08);
+      animalImg.style.filter = 'blur(' + blur + 'px) brightness(' + brightness + ')';
+      if (tilesRevealed === 3) hintText.textContent = 'Habitat hint: ' + animal.habitat + '. Keep going or guess now!';
       if (tilesRevealed >= 5) showGuess(animal);
     }
 
     function showGuess(animal) {
-      if (!guessDiv.hidden) return;
-      guessDiv.hidden = false;
+      if (guessDiv.style.display !== 'none') return;
+      show(guessDiv);
       optionsDiv.innerHTML = '';
       const opts = [...animal.options].sort(() => Math.random() - 0.5);
       opts.forEach(opt => {
@@ -414,17 +413,14 @@ document.addEventListener('DOMContentLoaded', () => {
       const pointsEarned = guess === animal.name ? Math.max(1, remaining + 1) * 2 : 0;
       score += pointsEarned;
       scoreVal.textContent = score;
-
       board.querySelectorAll('.explorer-tile').forEach(t => t.classList.add('revealed'));
       animalImg.style.filter = 'none';
       animalImg.alt = animal.name;
-      guessDiv.hidden = true;
-
+      hide(guessDiv);
       optionsDiv.querySelectorAll('.explorer-opt').forEach(b => {
         if (b.textContent === animal.name) b.classList.add('correct');
         else if (b.textContent === guess && guess !== animal.name) b.classList.add('wrong');
       });
-
       const correct = guess === animal.name;
       resultInner.innerHTML =
         '<h3>' + (correct ? '&#9989; Correct!' : '&#10060; Not quite!') + '</h3>' +
@@ -433,8 +429,7 @@ document.addEventListener('DOMContentLoaded', () => {
         (correct
           ? '<p style="color:var(--accent);font-weight:600">+' + pointsEarned + ' points!</p>'
           : '<p style="color:#e07070">No points this time.</p>');
-
-      resultDiv.hidden = false;
+      show(resultDiv);
     }
 
     if (startBtn) startBtn.addEventListener('click', startGame);
@@ -443,10 +438,11 @@ document.addEventListener('DOMContentLoaded', () => {
       nextBtn.addEventListener('click', () => {
         animalIndex++;
         if (animalIndex >= TOTAL) {
-          boardWrap.classList.remove('active');
-          guessDiv.hidden = true;
-          resultDiv.hidden = true;
-          completeDiv.hidden = false;
+          hide(boardWrap);
+          hide(scoreBar);
+          hide(hintBar);
+          hide(resultDiv);
+          show(completeDiv);
           finalScore.textContent = score;
           const max = TOTAL * 10;
           finalMsg.textContent = score >= max * 0.8
@@ -464,11 +460,14 @@ document.addEventListener('DOMContentLoaded', () => {
       restartBtn.addEventListener('click', () => {
         score = 0; animalIndex = 0;
         scoreVal.textContent = '0';
-        completeDiv.hidden = true;
-        boardWrap.classList.add('active');
+        hide(completeDiv);
+        show(scoreBar);
+        show(hintBar);
+        show(boardWrap);
         loadAnimal(0);
       });
     }
-  }
+
+  } // end if board
 
 }); // end DOMContentLoaded
