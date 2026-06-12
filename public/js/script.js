@@ -1,5 +1,18 @@
 'use strict';
 
+// ── THEME TOGGLE
+const themeBtn = document.getElementById('themeToggle');
+const savedTheme = localStorage.getItem('wv-theme');
+if (savedTheme === 'light') document.body.classList.add('light');
+
+if (themeBtn) {
+  themeBtn.addEventListener('click', () => {
+    const isLight = document.body.classList.toggle('light');
+    localStorage.setItem('wv-theme', isLight ? 'light' : 'dark');
+    themeBtn.setAttribute('aria-label', isLight ? 'Toggle dark mode' : 'Toggle light mode');
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
 
   // ── NAV SCROLL
@@ -12,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ── MOBILE BURGER
   const burger = document.getElementById('navBurger');
-  const links  = document.getElementById('navLinks');
+  const links = document.getElementById('navLinks');
   if (burger && links) {
     burger.addEventListener('click', () => {
       const open = links.classList.toggle('open');
@@ -63,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ── CONTACT CHAR COUNT
-  const msg   = document.getElementById('message');
+  const msg = document.getElementById('message');
   const count = document.getElementById('charCount');
   if (msg && count) {
     msg.addEventListener('input', () => {

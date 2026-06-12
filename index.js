@@ -1,8 +1,8 @@
 const express = require('express');
-const path    = require('path');
+const path = require('path');
 const sqlite3 = require('sqlite3').verbose();
 
-const app  = express();
+const app = express();
 const PORT = 3000;
 
 const db = new sqlite3.Database(
@@ -105,9 +105,9 @@ app.get('/contact', (req, res) => {
 app.post('/contact', (req, res) => {
   const { name, email, subject, message } = req.body;
   const errors = [];
-  if (!name    || name.trim().length < 2)
+  if (!name || name.trim().length < 2)
     errors.push('Please enter your full name (at least 2 characters).');
-  if (!email   || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim()))
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim()))
     errors.push('Please enter a valid email address.');
   if (!subject || subject.trim().length < 2)
     errors.push('Please select a subject.');
@@ -123,7 +123,7 @@ app.post('/contact', (req, res) => {
   db.run(
     `INSERT INTO contact_messages (name, email, subject, message) VALUES (?, ?, ?, ?)`,
     [name.trim(), email.trim(), subject.trim(), message.trim()],
-    function(err) {
+    function (err) {
       if (err) {
         return res.render('pages/contact', {
           title: 'Contact — WildVista', success: null,

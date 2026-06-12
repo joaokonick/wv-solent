@@ -447,3 +447,57 @@ em{font-style:italic;color:var(--accent)}
   .hero__btns{flex-direction:column;align-items:center}
   .hrow__body{padding:1.5rem}
 }
+
+/* ══ LIGHT MODE ══════════════════════════════════════════ */
+body.light {
+  --bg:     #f5f7f5;
+  --bg2:    #edf0ed;
+  --surf:   #ffffff;
+  --surf2:  #f0f3f0;
+  --border: rgba(0,0,0,0.08);
+  --text:   #1a2e1f;
+  --muted:  #5a7a63;
+  --white:  #0f1f13;
+}
+
+body.light .hdr.scrolled {
+  background: rgba(245,247,245,0.92);
+}
+
+body.light .hero__bg {
+  filter: brightness(1.6) saturate(.7);
+}
+
+body.light .nav__a { color: var(--muted); }
+body.light .nav__a:hover { color: var(--text); background: rgba(0,0,0,0.05); }
+body.light .hdr__strip {
+  background: linear-gradient(90deg,rgba(45,106,79,.1),rgba(45,106,79,.05));
+  border-color: rgba(45,106,79,.2);
+}
+
+/* Theme toggle button */
+.nav__theme {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  background: transparent;
+  transition: color var(--fast), background var(--fast), border-color var(--fast);
+  margin-right: .25rem;
+}
+.nav__theme:hover {
+  color: var(--accent);
+  background: rgba(78,201,123,.1);
+  border-color: rgba(78,201,123,.3);
+}
+
+/* Show/hide icons */
+.icon-sun  { display: none; }
+.icon-moon { display: block; }
+
+body.light .icon-sun  { display: block; }
+body.light .icon-moon { display: none; }
