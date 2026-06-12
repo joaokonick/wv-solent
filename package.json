@@ -1,10 +1,11 @@
 {
   "name": "wildvista",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "index.mjs",
+  "type": "module",
   "scripts": {
-    "start": "node index.js",
-    "seed": "node database/seed.js"
+    "start": "node index.mjs",
+    "seed": "node database/seed.mjs"
   },
   "dependencies": {
     "ejs": "^3.1.10",

@@ -1,0 +1,84 @@
+<%- include('../partials/header') %>
+    <main id="main">
+
+        <section class="page-hero">
+            <p class="eyebrow au">Junior Rangers</p>
+            <h1 class="au au-d1">Animal Explorer</h1>
+            <p class="page-hero__sub au au-d2">Can you guess the animal from the clues? Uncover tiles and test your
+                wildlife knowledge!</p>
+        </section>
+
+        <section class="explorer-sec js-reveal">
+            <div class="explorer-inner">
+                <div class="explorer-game" id="explorerGame">
+
+                    <!-- SCORE BAR — hidden until game starts -->
+                    <div class="explorer-score-bar" id="scoreBar" hidden>
+                        <div class="explorer-stat">
+                            <span class="explorer-stat__label">Score</span>
+                            <span class="explorer-stat__val" id="scoreVal">0</span>
+                        </div>
+                        <div class="explorer-stat">
+                            <span class="explorer-stat__label">Animal</span>
+                            <span class="explorer-stat__val" id="animalNum">1 / 8</span>
+                        </div>
+                        <div class="explorer-stat">
+                            <span class="explorer-stat__label">Tiles Left</span>
+                            <span class="explorer-stat__val" id="tilesLeft">9</span>
+                        </div>
+                    </div>
+
+                    <!-- HINT BAR — hidden until game starts -->
+                    <div class="explorer-hint" id="hintBar" hidden>
+                        <span id="hintText">Click tiles to reveal the animal!</span>
+                    </div>
+
+                    <!-- START SCREEN -->
+                    <div class="explorer-start" id="explorerStart">
+                        <div class="explorer-start__icon">&#127758;</div>
+                        <h2>Can you name the animal?</h2>
+                        <p>Click tiles to uncover the mystery animal. The fewer tiles you reveal before guessing, the
+                            more points you earn!</p>
+                        <ul>
+                            <li>Reveal 5 tiles before guessing is unlocked</li>
+                            <li>Guess correctly with tiles remaining for bonus points</li>
+                            <li>8 animals across all WildVista habitats</li>
+                        </ul>
+                        <button class="btn btn--primary" id="startGame" style="margin-top:.5rem">Start Exploring
+                            &#8594;</button>
+                    </div>
+
+                    <!-- BOARD -->
+                    <div class="explorer-board-wrap" id="boardWrap">
+                        <img class="explorer-animal-img" id="animalImg" src="" alt="">
+                        <div class="explorer-board" id="explorerBoard"></div>
+                    </div>
+
+                    <!-- GUESS -->
+                    <div class="explorer-guess" id="explorerGuess" hidden>
+                        <p class="explorer-guess__label">What animal is this?</p>
+                        <div class="explorer-options" id="explorerOptions"></div>
+                    </div>
+
+                    <!-- RESULT -->
+                    <div class="explorer-result" id="explorerResult" hidden>
+                        <div class="explorer-result__inner" id="resultInner"></div>
+                        <button class="btn btn--primary" id="nextAnimal">Next Animal &#8594;</button>
+                    </div>
+
+                    <!-- COMPLETE -->
+                    <div class="explorer-complete" id="explorerComplete" hidden>
+                        <div class="explorer-complete__icon">&#127881;</div>
+                        <h2>Explorer Complete!</h2>
+                        <p>You scored <strong id="finalScore">0</strong> out of 80 points.</p>
+                        <p id="finalMsg"></p>
+                        <button class="btn btn--primary" id="restartGame">Play Again</button>
+                        <a class="btn btn--outline" href="/habitats">Visit Our Habitats</a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+    <%- include('../partials/footer') %>
