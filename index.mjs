@@ -7,7 +7,7 @@ const { verbose } = sqlite3pkg;
 const sqlite3 = verbose();
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
-const PORT = 3000;
+const PORT = 5000;
 
 const db = new sqlite3.Database(
   path.join(__dirname, 'database', 'wildlife.db'),
