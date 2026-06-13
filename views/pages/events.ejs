@@ -1,47 +1,62 @@
 <%- include('../partials/header') %>
-<main id="main">
+  <main id="main">
 
-  <section class="page-hero">
-    <p class="eyebrow au">What's On</p>
-    <h1 class="au au-d1">Events</h1>
-    <p class="page-hero__sub au au-d2">From exclusive night safaris to wildlife photography masterclasses — there is always something extraordinary happening at WildVista.</p>
-  </section>
+    <section class="page-hero">
+      <p class="eyebrow au">What's On</p>
+      <h1 class="au au-d1">Events</h1>
+      <p class="page-hero__sub au au-d2">From night safaris to wildlife photography masterclasses there is always
+        something extraordinary happening at WildVista.</p>
+    </section>
 
-  <div class="ibar" role="note">
-    <span class="pulsedot pulsedot--sm" aria-hidden="true"></span>
-    Open every day &mdash; <strong>9:00 AM &ndash; 6:00 PM</strong>
-  </div>
-
-  <section class="ev-section" aria-label="All events">
-    <div class="ev-list">
-      <% events.forEach((ev,i) => {
-         const d  = new Date(ev.event_date);
-         const ml = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-         const ms = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-      %>
-      <article class="evitem js-reveal" style="animation-delay:<%= i*0.08 %>s"
-               aria-label="<%= ev.title %>, <%= d.getUTCDate() %> <%= ml[d.getUTCMonth()] %> <%= d.getUTCFullYear() %>">
-        <div class="evitem__date">
-          <span class="evitem__day"><%= d.getUTCDate() %></span>
-          <span class="evitem__mo"><%= ms[d.getUTCMonth()] %></span>
-          <span class="evitem__yr"><%= d.getUTCFullYear() %></span>
-        </div>
-        <div class="evitem__body">
-          <div class="evitem__top">
-            <span class="ev-badge"
-              style="background:<%= ev.badge_color %>18;color:<%= ev.badge_color %>;border-color:<%= ev.badge_color %>44">
-              <%= ev.badge %>
-            </span>
-            <span class="evitem__loc">&#128205; <%= ev.location %></span>
-          </div>
-          <h2><%= ev.title %></h2>
-          <p class="evitem__desc"><%= ev.description %></p>
-          <p class="evitem__time">&#128336; <%= ev.event_time %></p>
-        </div>
-      </article>
-      <% }) %>
+    <div class="ibar" role="note">
+      <span class="pulsedot pulsedot--sm" aria-hidden="true"></span>
+      Open every day &mdash; <strong>9:00 AM &ndash; 6:00 PM</strong>
     </div>
-  </section>
 
-</main>
-<%- include('../partials/footer') %>
+    <section class="ev-filters js-reveal" aria-label="Filter events">
+      <div class="ev-filters__inner">
+
+        <div class="ev-filter-group">
+          <label class="ev-filter-label" for="yearSelect">Year</label>
+          <div class="ev-select-wrap">
+            <select id="yearSelect" aria-label="Select year">
+              <% years.forEach(function(y) { %>
+                <option value="<%= y %>" <%=y===selectedYear ? 'selected' : '' %>><%= y %>
+                </option>
+                <% }); %>
+            </select>
+          </div>
+        </div>
+
+        <div class="ev-filter-group">
+          <label class="ev-filter-label">Category</label>
+          <div class="ev-cat-btns" id="catBtns" role="group" aria-label="Filter by category">
+            <button class="ev-cat-btn <%= selectedCategory === 'all' ? 'active' : '' %>" data-cat="all">All</button>
+            <button class="ev-cat-btn <%= selectedCategory === 'Seasonal Celebration' ? 'active' : '' %>"
+              data-cat="Seasonal Celebration">Seasonal</button>
+            <button class="ev-cat-btn <%= selectedCategory === 'Conservation Talk' ? 'active' : '' %>"
+              data-cat="Conservation Talk">Conservation</button>
+            <button class="ev-cat-btn <%= selectedCategory === 'Family Activity' ? 'active' : '' %>"
+              data-cat="Family Activity">Family</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="ev-section" aria-label="Events list" aria-live="polite">
+      <div class="ev-list" id="evList">
+        <div class="ev-loading" id="evLoading">
+          <div class="spinner"></div>
+          <p>Loading events...</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    var initialYear = '<%= selectedYear %>';
+    var initialCat = '<%= selectedCategory %>';
+  </script>
+  <%- include('../partials/footer') %>

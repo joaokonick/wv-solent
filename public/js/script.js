@@ -1,8 +1,5 @@
 'use strict';
 
-/* ══════════════════════════════════════════
-   THEME TOGGLE
-══════════════════════════════════════════ */
 const themeBtn = document.getElementById('themeToggle');
 if (localStorage.getItem('wv-theme') === 'light') document.body.classList.add('light');
 if (themeBtn) {
@@ -314,14 +311,62 @@ document.addEventListener('DOMContentLoaded', () => {
   if (board) {
 
     const animals = [
-      { name: 'African Lion', img: 'https://images.pexels.com/photos/247502/pexels-photo-247502.jpeg?auto=compress&cs=tinysrgb&w=600', habitat: 'Savannah Plains', fact: 'Lions are the only cats that live in groups called prides.', options: ['African Lion', 'Snow Leopard', 'Cheetah', 'Tiger'] },
-      { name: 'Jaguar', img: 'https://images.pexels.com/photos/145939/pexels-photo-145939.jpeg?auto=compress&cs=tinysrgb&w=600', habitat: 'Rainforest Canopy', fact: 'Jaguars are excellent swimmers and often hunt in water.', options: ['Leopard', 'Jaguar', 'Puma', 'Ocelot'] },
-      { name: 'Polar Bear', img: 'https://images.pexels.com/photos/87833/pexels-photo-87833.jpeg?auto=compress&cs=tinysrgb&w=600', habitat: 'Arctic Tundra', fact: 'Polar bear fur is actually transparent, not white!', options: ['Polar Bear', 'Grizzly Bear', 'Arctic Fox', 'Walrus'] },
-      { name: 'Giraffe', img: 'https://images.pexels.com/photos/1035508/pexels-photo-1035508.jpeg?auto=compress&cs=tinysrgb&w=600', habitat: 'Savannah Plains', fact: 'Giraffes only need 5 to 30 minutes of sleep per day.', options: ['Giraffe', 'Okapi', 'Camel', 'Zebra'] },
-      { name: 'Manta Ray', img: 'https://images.pexels.com/photos/1001682/pexels-photo-1001682.jpeg?auto=compress&cs=tinysrgb&w=600', habitat: 'Ocean Discovery', fact: 'Manta rays have the largest brain-to-body ratio of any fish.', options: ['Manta Ray', 'Hammerhead Shark', 'Stingray', 'Whale Shark'] },
-      { name: 'Komodo Dragon', img: 'https://images.pexels.com/photos/1108701/pexels-photo-1108701.jpeg?auto=compress&cs=tinysrgb&w=600', habitat: 'Reptile World', fact: 'Komodo dragons can run up to 20 km/h over short distances.', options: ['Iguana', 'Monitor Lizard', 'Komodo Dragon', 'Crocodile'] },
-      { name: 'African Elephant', img: 'https://images.pexels.com/photos/631317/pexels-photo-631317.jpeg?auto=compress&cs=tinysrgb&w=600', habitat: 'Savannah Plains', fact: 'Elephants are the only animals that cannot jump.', options: ['African Elephant', 'Hippo', 'Rhino', 'Buffalo'] },
-      { name: 'Morpho Butterfly', img: 'https://images.pexels.com/photos/326055/pexels-photo-326055.jpeg?auto=compress&cs=tinysrgb&w=600', habitat: 'Rainforest Canopy', fact: 'The Blue Morpho uses light refraction to create its vivid colour.', options: ['Monarch Butterfly', 'Morpho Butterfly', 'Painted Lady', 'Swallowtail'] }
+      {
+        name: 'African Lion',
+        img: 'https://images.pexels.com/photos/247502/pexels-photo-247502.jpeg?auto=compress&cs=tinysrgb&w=600',
+        habitat: 'Savannah Plains',
+        fact: 'Lions are the only cats that live in groups called prides.',
+        options: ['African Lion', 'Snow Leopard', 'Cheetah', 'Tiger']
+      },
+      {
+        name: 'Jaguar',
+        img: 'https://images.pexels.com/photos/3608263/pexels-photo-3608263.jpeg?auto=compress&cs=tinysrgb&w=600',
+        habitat: 'Rainforest Canopy',
+        fact: 'Jaguars are excellent swimmers and often hunt in water.',
+        options: ['Leopard', 'Jaguar', 'Puma', 'Ocelot']
+      },
+      {
+        name: 'Polar Bear',
+        img: 'https://images.pexels.com/photos/53425/pexels-photo-53425.jpeg?auto=compress&cs=tinysrgb&w=600',
+        habitat: 'Arctic Tundra',
+        fact: 'Polar bear fur is actually transparent, not white!',
+        options: ['Polar Bear', 'Grizzly Bear', 'Arctic Fox', 'Walrus']
+      },
+      {
+        name: 'Giraffe',
+        img: 'https://images.pexels.com/photos/802112/pexels-photo-802112.jpeg?auto=compress&cs=tinysrgb&w=600',
+        habitat: 'Savannah Plains',
+        fact: 'Giraffes only need 5 to 30 minutes of sleep per day.',
+        options: ['Giraffe', 'Okapi', 'Camel', 'Zebra']
+      },
+      {
+        name: 'Zebra',
+        img: 'https://images.pexels.com/photos/750539/pexels-photo-750539.jpeg?auto=compress&cs=tinysrgb&w=600',
+        habitat: 'Savannah Plains',
+        fact: 'Every zebra has a unique stripe pattern, like a fingerprint.',
+        options: ['Zebra', 'Donkey', 'Horse', 'Wildebeest']
+      },
+      {
+        name: 'Komodo Dragon',
+        img: 'https://images.pexels.com/photos/601823/pexels-photo-601823.jpeg?auto=compress&cs=tinysrgb&w=600',
+        habitat: 'Reptile World',
+        fact: 'Komodo dragons can run up to 20 km/h over short distances.',
+        options: ['Iguana', 'Monitor Lizard', 'Komodo Dragon', 'Crocodile']
+      },
+      {
+        name: 'African Elephant',
+        img: 'https://images.pexels.com/photos/1054655/pexels-photo-1054655.jpeg?auto=compress&cs=tinysrgb&w=600',
+        habitat: 'Savannah Plains',
+        fact: 'Elephants are the only animals that cannot jump.',
+        options: ['African Elephant', 'Hippo', 'Rhino', 'Buffalo']
+      },
+      {
+        name: 'Morpho Butterfly',
+        img: 'https://images.pexels.com/photos/1104974/pexels-photo-1104974.jpeg?auto=compress&cs=tinysrgb&w=600',
+        habitat: 'Rainforest Canopy',
+        fact: 'The Blue Morpho uses light refraction to create its vivid colour.',
+        options: ['Monarch Butterfly', 'Morpho Butterfly', 'Painted Lady', 'Swallowtail']
+      }
     ];
 
     let score = 0, animalIndex = 0, tilesRevealed = 0;
@@ -354,7 +399,7 @@ document.addEventListener('DOMContentLoaded', () => {
       hide(startScreen);
       show(scoreBar);
       show(hintBar);
-      show(boardWrap);
+      boardWrap.classList.add('active');
       loadAnimal(0);
     }
 
@@ -438,7 +483,7 @@ document.addEventListener('DOMContentLoaded', () => {
       nextBtn.addEventListener('click', () => {
         animalIndex++;
         if (animalIndex >= TOTAL) {
-          hide(boardWrap);
+          boardWrap.classList.remove('active');
           hide(scoreBar);
           hide(hintBar);
           hide(resultDiv);
@@ -463,7 +508,7 @@ document.addEventListener('DOMContentLoaded', () => {
         hide(completeDiv);
         show(scoreBar);
         show(hintBar);
-        show(boardWrap);
+        boardWrap.classList.add('active');
         loadAnimal(0);
       });
     }
